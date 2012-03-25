@@ -1,7 +1,9 @@
 from cStringIO import StringIO
 
 def get_next(s):
-    c = s.read(1)
+    c = None
+    while c not in ['"','{','}']:
+        c = s.read(1)
     if c == '"':
         " string "
         data = ''
@@ -29,5 +31,5 @@ def get_next(s):
     return data
     
 def parse_vdf(data):
-    data = StringIO('{%s}' % data.replace('\t','').replace('\n','').replace('\r',''))
+    data = StringIO('{%s}' % data)
     return get_next(data)
