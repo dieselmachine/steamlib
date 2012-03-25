@@ -29,5 +29,5 @@ def get_next(s):
     return data
     
 def parse_vdf(data):
-    data = StringIO('{%s}' % data.replace('\t','').replace('\n',''))
+    data = StringIO('{%s}' % data.replace('\t','').replace('\n','').replace('\r',''))
     return get_next(data)
