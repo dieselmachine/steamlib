@@ -1,3 +1,4 @@
+from datetime import datetime
 from urllib import urlopen, urlencode
 from simplejson import loads
 import re, sys
@@ -23,7 +24,10 @@ class SteamAPIClient:
         })
         url = API_HOST + path + '?' + urlencode(params)
         rsp = urlopen(url)
-        return loads(rsp.read())
+        data = loads(rsp.read())
+        data['last-modified'] = datetime.strptime(rsp.headers['last-modified'],
+            '%a, %d %b %Y %H:%M:%S %Z')
+        return data
 
     def get_schema(self, app_id, lang=None):
         path = '/IEconItems_%s/GetSchema/v0001/' % app_id
