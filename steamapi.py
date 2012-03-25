@@ -1,6 +1,9 @@
 from datetime import datetime
 from urllib import urlopen, urlencode
-from simplejson import loads
+try:
+    from simplejson import loads
+except:
+    from json import loads
 import re, sys
 
 API_HOST = 'http://api.steampowered.com'
