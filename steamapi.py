@@ -115,7 +115,7 @@ class SteamAPIClient:
             self.base_schemas[app_id] = self.get_schema(app_id, None)
         translations = {}
         tokens = extract_tokens(self.base_schemas[app_id])
-        schema = client.get_schema(app_id, lang)
+        schema = self.get_schema(app_id, lang)
         for path,token in tokens:
             trans = extract_token_by_path(schema, path)
             translations[token] = trans
