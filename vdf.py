@@ -12,6 +12,7 @@ def get_next(s):
             if c == '"':
                 break
             data += c
+        data = data.decode('utf8')
     elif c == '{':
         " dict "
         data = {}
@@ -19,7 +20,7 @@ def get_next(s):
             key = get_next(s)
             if key:
                 value = get_next(s)
-                data[key] = value
+                data[str(key)] = value
             else:
                 return data
             next = s.read(1)
